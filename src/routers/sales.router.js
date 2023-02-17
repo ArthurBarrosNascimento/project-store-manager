@@ -5,5 +5,7 @@ const validateNewSalesProductsFilds = require('../middlewares/validateNewSalesPr
 const router = express.Router();
 
 router.post('/', validateNewSalesProductsFilds, salesController.createSaleProducts);
+router.get('/', salesController.listAllSalesProducts);
+router.get('/:id', salesController.getSalesProductById);
 
 module.exports = router;
