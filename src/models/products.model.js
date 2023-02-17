@@ -8,7 +8,7 @@ const findAll = async () => {
   return result;
 };
 
-const findByID = async (productId) => {
+const findById = async (productId) => {
   const [[result]] = await connection.execute(
     'SELECT * FROM StoreManager.products WHERE id = ? ORDER BY id;', [productId],
   );
@@ -22,8 +22,17 @@ const insert = async (productName) => {
   return insertId;
 };
 
+const updateProductById = async (id, string) => {
+  const [result] = await connection.execute(
+    'UPDATE StoreManager.products SET StoreManager.products.name = (?) WHERE id = (?)',
+    [string, id],
+  );
+  return result;
+};
+
 module.exports = {
   findAll,
-  findByID,
+  findById,
   insert,
+  updateProductById,
 };

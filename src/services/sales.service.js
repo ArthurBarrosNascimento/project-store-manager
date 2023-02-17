@@ -6,7 +6,7 @@ const createSalesProducts = async (salesProduct) => {
   if (error.type) return error;
 
   const prodctsId = salesProduct.map((x) => x.productId);
-  const verifyIfProductIdExist = await Promise.all(prodctsId.map((x) => productsModel.findByID(x)));
+  const verifyIfProductIdExist = await Promise.all(prodctsId.map((x) => productsModel.findById(x)));
   if (verifyIfProductIdExist.some((x) => typeof x === 'undefined')) {
     return { type: 'PRODUCT_NOT_FOUND', message: 'Product not found' };
   }
