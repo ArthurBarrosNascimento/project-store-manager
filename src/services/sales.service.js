@@ -34,8 +34,12 @@ const findSalesProductById = async (id) => {
   const error = await schema.validateId(id);
   if (error.type) return error;
 
+  const verifyIdSales = await salesModel.findSaleById(id);
+  if (!verifyIdSales) {
+    return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+  }
   const listSalesProductById = await salesModel.findSalesProductById(id);
-  if (!listSalesProductById) return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+
   return { type: null, message: listSalesProductById };
 };
 
