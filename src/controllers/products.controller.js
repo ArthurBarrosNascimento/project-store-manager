@@ -30,9 +30,17 @@ const updateProjectById = async (req, res) => {
   return res.status(200).json(message);
 };
 
+const deleteProductById = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await productsService.deleteProductById(id);
+  if (type) return res.status(errorMap.mapError(type)).json({ message });
+  return res.status(204);
+};
+
 module.exports = {
   listProducts,
   getProductById,
   createProduct,
   updateProjectById,
+  deleteProductById,
 };
