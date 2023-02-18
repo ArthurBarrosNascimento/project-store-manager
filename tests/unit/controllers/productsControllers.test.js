@@ -16,7 +16,7 @@ describe('Testando a unidade Controller de products', () => {
     res.status = sinon.stub().returns(res);
     res.json = sinon.stub().returns();
 
-    sinon.stub(productsServicem, 'findAll').resolves({ type: null, message: allProducts })
+    sinon.stub(productsService, 'findAll').resolves({ type: null, message: allProducts })
 
     await productsController.listProducts(req, res);
 
